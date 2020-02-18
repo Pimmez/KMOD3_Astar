@@ -16,7 +16,9 @@ public class Astar
     /// <returns></returns>
     public List<Vector2Int> FindPathToTarget(Vector2Int startPos, Vector2Int endPos, Cell[,] grid)
     {
-        return null;
+
+		
+        //return null;
     }
 
     /// <summary>
