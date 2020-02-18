@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Solution;
+
 public class Agent : MonoBehaviour
 {
     public int moveButton = 0;
     public float moveSpeed = 3;
-    private AstarSolution Astar = new AstarSolution();
+    private Astar Astar = new Astar();
     private List<Vector2Int> path = new List<Vector2Int>();
     private Plane ground = new Plane(Vector3.up, 0f);
     private MeshRenderer renderer;
     private GameObject targetVisual;
     private MazeGeneration maze;
     private LineRenderer line;
-    private void Awake()
+
+	private void Awake()
     {
         maze = FindObjectOfType<MazeGeneration>();
         renderer = GetComponentInChildren<MeshRenderer>();
@@ -22,10 +23,6 @@ public class Agent : MonoBehaviour
         line = GetComponent<LineRenderer>();
         line.material.color = renderer.material.color;
         line.material.color = renderer.material.color;
-    }
-
-    private void Start()
-    {
     }
 
     public void FindPathToTarget(Vector2Int startPos, Vector2Int endPos, Cell[,] grid)
@@ -45,7 +42,6 @@ public class Agent : MonoBehaviour
             }
         }
     }
-
 
     //Move to clicked position
     public void Update()
@@ -74,8 +70,8 @@ public class Agent : MonoBehaviour
                 DrawPath();
             }
         }
-
     }
+
     public Vector3 MouseToWorld()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -91,10 +87,12 @@ public class Agent : MonoBehaviour
     {
         return new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
     }
+
     private Vector3 Vector2IntToVector3(Vector2Int pos, float YPos = 0)
     {
         return new Vector3(Mathf.RoundToInt(pos.x), YPos, Mathf.RoundToInt(pos.y));
     }
+
     private void OnDrawGizmos()
     {
         if (path != null && path.Count > 0)
